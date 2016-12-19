@@ -7,7 +7,9 @@
  * @author liyan
  * @since 2016 4 26
  */
-class MKafkaMessage implements Iterator {
+namespace Mod\Kafka;
+
+class MKafkaMessage implements \Iterator {
 
     private $fetchTopic;
 

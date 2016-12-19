@@ -1,7 +1,7 @@
 <?php
 spl_autoload_register(function($className)
 {
-    $basePath = GLUTIL;
+    $basePath = __DIR__.'/../';
     $classFile = $basePath . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
     if (function_exists('stream_resolve_include_path')) {
         $file = stream_resolve_include_path($classFile);

@@ -7,6 +7,8 @@
  * @author liyan
  * @since 2016 4 19
  */
+namespace Mod\Kafka;
+
 require_once __DIR__.'/../util/Kafka/__kafka_init.php';
 
 class MKafka {
