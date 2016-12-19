@@ -130,35 +130,4 @@ class MKafka {
         return $partitions;
     }
 
-    protected static function getTopicOffset($topic) {
-        $topic_path = Config::runtimeConfigForKeyPath('kafka.offset_path');
-        $partitions = MKafka::getTopicPartitions($topic);
-        $offset = array();
-        foreach ($partitions as $partId) {
-            $partition_file = sprintf("%s/kafka-consume/%s/offset/%s", $topic_path, $topic, $partId);
-            $offset[$partId] = 0;
-            if (file_exists($partition_file)) {
-                $offset[$partId] = file_get_contents($partition_file);
-            }
-        }
-        return $offset;
-    }
-
-    public static function persistentTopicPartitionOffset($topic, $partId, $offset) {
-        $topic_path = Config::runtimeConfigForKeyPath('kafka.offset_path');
-        $partition_file = sprintf("%s/kafka-consume/%s/offset/%s", $topic_path, $topic, $partId);
-        if (!is_dir(dirname($partition_file))) {
-            mkdir(dirname($partition_file), 0777, true);
-        }
-        file_put_contents($partition_file, $offset + 1);
-    }
-
-    public static function persistentTopicOffset($topicOffset) {
-        foreach ($topicOffset as $topic => $partitions) {
-            foreach ($partitions as $partId => $offset) {
-                self::persistentTopicPartitionOffset($topic, $partId, $offset);
-            }
-        }
-    }
-
 }
