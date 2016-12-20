@@ -9,7 +9,9 @@
  */
 namespace Mod\Kafka;
 
-class MKafkaMessage implements \Iterator {
+use \Iterator;
+
+class MKafkaMessage implements Iterator {
 
     private $fetchTopic;
 
