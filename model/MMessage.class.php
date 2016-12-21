@@ -2,7 +2,7 @@
 /**
  * description
  *
- * Filename: MKafkaMessage.class.php
+ * Filename: MMessage.class.php
  *
  * @author liyan
  * @since 2016 4 26
@@ -11,7 +11,7 @@ namespace Mod\Kafka;
 
 use \Iterator;
 
-class MKafkaMessage implements Iterator {
+class MMessage implements Iterator {
 
     private $fetchTopic;
 
@@ -28,7 +28,7 @@ class MKafkaMessage implements Iterator {
 
     public static function message(\Kafka\Protocol\Fetch\Topic $fetchTopic, $consumer) {
         self::$consumer = $consumer;
-        return new MKafkaMessage($fetchTopic);
+        return new MMessage($fetchTopic);
     }
 
     public static function encodeKafkaMessage($message) {
@@ -80,7 +80,7 @@ class MKafkaMessage implements Iterator {
 
         $host = self::$consumer->getClient()->getHostByPartition($topicName, $partId);
         // printl($host, 'part', $partId, $message);
-        $message = MKafkaMessage::decodeKafkaMessage($message);
+        $message = MMessage::decodeKafkaMessage($message);
 
         return $message;
     }

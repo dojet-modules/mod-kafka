@@ -54,7 +54,7 @@ class MKafka {
      * @return bool
      */
     public static function produce($topic, $message, $partId = 'anyone') {
-        $message = MKafkaMessage::encodeKafkaMessage($message);
+        $message = MMessage::encodeKafkaMessage($message);
         self::$arrMessages[$topic][$partId][] = $message;
     }
 
@@ -121,7 +121,7 @@ class MKafka {
         }
         die();
 //*/
-        return MKafkaMessage::message($result, $consumer);
+        return MMessage::message($result, $consumer);
     }
 
     public static function getTopicPartitions($topic) {
