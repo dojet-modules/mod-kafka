@@ -54,7 +54,6 @@ class MKafka {
      * @return bool
      */
     public static function produce($topic, $message, $partId = 'anyone') {
-        $message = MMessage::encodeKafkaMessage($message);
         self::$arrMessages[$topic][$partId][] = $message;
     }
 
